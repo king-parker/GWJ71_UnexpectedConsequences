@@ -13,9 +13,27 @@ config_version=4
 config/name="GWJ71_UnexpectedConsequences"
 config/icon="res://icon.png"
 
+[global]
+
+texture=false
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
+
+[layer_names]
+
+2d_physics/layer_1="Environment"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="PlayerAttack"
+2d_physics/layer_5="Killzone"
 
 [mono]
 
