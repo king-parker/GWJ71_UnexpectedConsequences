@@ -12,6 +12,7 @@ public class Slime : Node2D
     private RayCast2D _rayCastDown;
     private const float _rayCastLength = 10;
     private const float _rayCastYOffset = -6;
+    private GameManager _gameManager;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -24,6 +25,8 @@ public class Slime : Node2D
 
         _direction = StartGoingRight ? 1 : -1;
         SetDirection();
+
+        _gameManager = GetNode<GameManager>("%GameManager");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,6 +39,12 @@ public class Slime : Node2D
             }
 
         Position += new Vector2(_direction * Speed * delta, 0);
+    }
+
+    public void Death()
+    {
+        GD.Print("Slime dies!");
+        QueueFree();
     }
 
     private void SetDirection()

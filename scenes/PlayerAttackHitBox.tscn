@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/PlayerAttackHitBox.cs" type="Script" id=1]
+
+[node name="AttackHitBox" type="Area2D"]
+scale = Vector2( 1, 2 )
+collision_layer = 8
+collision_mask = 4
+script = ExtResource( 1 )
