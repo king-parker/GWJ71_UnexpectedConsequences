@@ -26,7 +26,7 @@ public class Slime : Node2D
         _direction = StartGoingRight ? 1 : -1;
         SetDirection();
 
-        _gameManager = GetNode<GameManager>("%GameManager");
+        _gameManager = GetNode<GameManager>("/root/GameManager");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,7 +43,6 @@ public class Slime : Node2D
 
     public void Death()
     {
-        GD.Print("Slime dies!");
         QueueFree();
     }
 

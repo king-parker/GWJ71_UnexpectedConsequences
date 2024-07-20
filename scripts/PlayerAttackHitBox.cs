@@ -10,7 +10,6 @@ public class PlayerAttackHitBox : Area2D
 
     private void OnAreaEntered(Area2D area)
     {
-        GD.Print("Slime hit!");
         Slime slime = area.GetParent<Slime>();
         if (slime != null)
         {

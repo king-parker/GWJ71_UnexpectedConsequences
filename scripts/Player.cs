@@ -4,7 +4,7 @@ using System;
 public class Player : KinematicBody2D
 {
     [Export] private float _speed = 100.0f;
-    [Export] private float _jumpSpeed = 250.0f;
+    [Export] private float _jumpSpeed = 300.0f;
     [Export] private float _gravity = 15.0f;
     [Export] private bool _isAttacking = false;
 
