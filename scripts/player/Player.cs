@@ -9,7 +9,6 @@ public class Player : KinematicBody2D
     [Export] private bool _isAttacking = false;
 
     private Vector2 _velocity = new Vector2();
-    private bool _wasJumpPressed = false;
     private bool _isJumping = false;
     private AnimatedSprite _characterAnimation;
     private AnimationPlayer _attackAnimation;

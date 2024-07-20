@@ -21,7 +21,7 @@ public class HUD : CanvasLayer
     public void UpdateRage(int rage)
     {
         _rageLabel.Text = RAGE_BASE_TEXT + rage;
-        
+
         if (rage > 0)
         {
             _rageLabel.Show();

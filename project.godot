@@ -11,12 +11,13 @@ config_version=4
 [application]
 
 config/name="GWJ71_UnexpectedConsequences"
+run/main_scene="res://scenes/levels/LevelTutorial.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-GameManager="*res://scenes/GameManager.tscn"
-BackgroundMusic="*res://scenes/BackgroundMusic.tscn"
+GameManager="*res://scenes/utility/GameManager.tscn"
+BackgroundMusic="*res://scenes/utility/BackgroundMusic.tscn"
 
 [global]
 
