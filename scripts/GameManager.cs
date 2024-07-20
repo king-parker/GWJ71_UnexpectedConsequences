@@ -26,6 +26,11 @@ public class GameManager : Node
         EmitSignal(nameof(RageUpdated), _rage);
     }
 
+    public int GetRage()
+    {
+        return _rage;
+    }
+
     public void PlayerDied()
     {
         _restartTimer.Start();

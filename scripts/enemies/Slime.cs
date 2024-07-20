@@ -5,7 +5,9 @@ public class Slime : Node2D
 {
     [Export] public float Speed = 50.0f;
     [Export] public bool StartGoingRight = true;
+    [Export] public int RageScaling = 10;
 
+    private float _baseSpeed;
     private float _direction = 1f;
     private AnimatedSprite _animation;
     private RayCast2D _rayCastSide;
@@ -14,9 +16,10 @@ public class Slime : Node2D
     private const float _rayCastYOffset = -6;
     private GameManager _gameManager;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        _baseSpeed = Speed;
+
         _animation = GetNode<AnimatedSprite>("AnimatedSprite");
         _animation.Play("default");
 
@@ -27,9 +30,11 @@ public class Slime : Node2D
         SetDirection();
 
         _gameManager = GetNode<GameManager>("/root/GameManager");
+        _gameManager.Connect("RageUpdated", this, "ProcessRage");
+
+        ProcessRage(_gameManager.GetRage());
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
         if (_rayCastSide.IsColliding() || !_rayCastDown.IsColliding())
@@ -43,6 +48,7 @@ public class Slime : Node2D
 
     public void Death()
     {
+        _gameManager.IncrementRage();
         QueueFree();
     }
 
@@ -51,5 +57,14 @@ public class Slime : Node2D
         _rayCastSide.CastTo = new Vector2(_direction * _rayCastLength, 0);
         _rayCastDown.Position = new Vector2(_direction * _rayCastLength, _rayCastYOffset);
         _animation.FlipH = (_direction == -1);
+    }
+
+    private void ProcessRage(int rage)
+    {
+        float factor = 1 + rage / (float)RageScaling;
+        // GD.Print("Scaling factor: " + factor);
+        Speed = _baseSpeed * factor;
+        // GD.Print("New Speed: " + Speed);
+        Scale = new Vector2(factor, factor);
     }
 }
