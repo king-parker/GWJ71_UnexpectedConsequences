@@ -14,7 +14,7 @@ font_data = ExtResource( 3 )
 size = 8
 font_data = ExtResource( 4 )
 
-[node name="SlimeScreenshots" type="Node2D"]
+[node name="TitleScreen" type="Node2D"]
 
 [node name="UI" type="Node" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/sprites/world_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/utility/PlayerCamera.tscn" type="PackedScene" id=2]
@@ -7,12 +7,6 @@
 [ext_resource path="res://scenes/utility/Killzone.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/Slime.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/game-platforms/GrassyPlatform.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/fonts/PixelOperator8.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://scenes/Utility/LevelEndZone.tscn" type="PackedScene" id=9]
-
-[sub_resource type="DynamicFont" id=2]
-size = 8
-font_data = ExtResource( 8 )
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -48,142 +42,11 @@ tracks/0/keys = {
 
 [sub_resource type="LineShape2D" id=1]
 
-[sub_resource type="SegmentShape2D" id=5]
-b = Vector2( 0, 192 )
-
-[node name="LevelTutorial" type="Node2D"]
+[node name="Level1" type="Node2D"]
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
 [node name="Text" type="Node" parent="."]
-
-[node name="MoveTutorial" type="Label" parent="Text"]
-margin_left = 24.0
-margin_top = 392.0
-margin_right = 194.0
-margin_bottom = 433.0
-custom_fonts/font = SubResource( 2 )
-text = "To move:
-- Left and right arrow keys
-- W and D keys
-- D-pad or left analog stick"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="JumpTutorial" type="Label" parent="Text"]
-margin_left = 336.0
-margin_top = 392.0
-margin_right = 439.0
-margin_bottom = 433.0
-custom_fonts/font = SubResource( 2 )
-text = "To jump:
-- Space bar
-- Xbox a button"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="JumpHeightTutorial" type="Label" parent="Text"]
-margin_left = 496.0
-margin_top = 392.0
-margin_right = 599.0
-margin_bottom = 433.0
-custom_fonts/font = SubResource( 2 )
-text = "To jump higher, hold the jump button."
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="DeathTutorial" type="Label" parent="Text"]
-anchor_right = 0.0244141
-margin_left = 680.0
-margin_top = 392.0
-margin_right = 783.0
-margin_bottom = 433.0
-custom_fonts/font = SubResource( 2 )
-text = "These signs indicate a fatal fall.
-Death means you start over."
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="PlatformTutorial" type="Label" parent="Text"]
-anchor_right = 0.0244141
-margin_left = 832.0
-margin_top = 408.0
-margin_right = 935.0
-margin_bottom = 449.0
-custom_fonts/font = SubResource( 2 )
-text = "You can jump through the bottom of these platforms."
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="MovingPlatformTutorial" type="Label" parent="Text"]
-anchor_right = 0.0244141
-margin_left = 1008.0
-margin_top = 288.0
-margin_right = 1111.0
-margin_bottom = 329.0
-custom_fonts/font = SubResource( 2 )
-text = "Sometimes you need to use moving platforms to cross large chasms."
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="SlimeTutorial" type="Label" parent="Text"]
-anchor_right = 0.0244141
-margin_left = 1288.0
-margin_top = 288.0
-margin_right = 1391.0
-margin_bottom = 329.0
-custom_fonts/font = SubResource( 2 )
-text = "Slimes kill you when they touch you.
-Avoid them or kill them."
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="AttackTutorial" type="Label" parent="Text"]
-anchor_right = 0.0244141
-margin_left = 1464.0
-margin_top = 288.0
-margin_right = 1567.0
-margin_bottom = 329.0
-custom_fonts/font = SubResource( 2 )
-text = "To attack:
-- z key
-- Left mouse click
-- Xbox b button"
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="AttackTutorial2" type="Label" parent="Text"]
-anchor_right = 0.0244141
-margin_left = 1600.0
-margin_top = 288.0
-margin_right = 1703.0
-margin_bottom = 329.0
-custom_fonts/font = SubResource( 2 )
-text = "You are now completely prepared to start your ADVENTURE!"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Background" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -237,9 +100,3 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/UniversalKillzone"]
 shape = SubResource( 1 )
-
-[node name="LevelEndZone" parent="." instance=ExtResource( 9 )]
-position = Vector2( 1856, 210 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEndZone"]
-shape = SubResource( 5 )
