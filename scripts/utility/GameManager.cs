@@ -3,12 +3,23 @@ using System;
 
 public class GameManager : Node
 {
+    public static string TITLE_SCREEN = "res://scenes/menus/TitleScreen.tscn";
     public static string TUTORIAL_LEVEL = "res://scenes/levels/LevelTutorial.tscn";
     public static string LEVEL_ONE = "res://scenes/levels/Level1.tscn";
+    public static string WIN_SCREEN = "res://scenes/menus/WinScreen.tscn";
+
+    public enum Scenes
+    {
+        TitleScreen,
+        Tutorial,
+        LevelOne,
+        WinScreen
+    }
 
     private int _rage = 0;
     private Timer _restartTimer;
     private Node _currentScene;
+    private Scenes _currentSceneEnum;
 
     [Signal] public delegate void RageUpdated(int newRage);
     [Signal] public delegate void PlayerDeathEvent();
@@ -17,13 +28,34 @@ public class GameManager : Node
     {
         Viewport root = GetTree().Root;
         _currentScene = root.GetChild(root.GetChildCount() - 1); // Current scene is the last child in the root node
+        _currentSceneEnum = Scenes.TitleScreen;
 
         _restartTimer = GetNode<Timer>("Timers/RestartTimer");
         _restartTimer.Connect("timeout", this, "OnRestartTimerTimeout");
     }
 
-    public void GotoScene(string path)
+    public void GotoNextLevel()
     {
+        switch (_currentSceneEnum)
+        {
+            case Scenes.TitleScreen:
+                GotoScene(TUTORIAL_LEVEL, Scenes.Tutorial);
+                break;
+            case Scenes.Tutorial:
+                GotoScene(LEVEL_ONE, Scenes.LevelOne);
+                break;
+            case Scenes.LevelOne:
+                GotoScene(WIN_SCREEN, Scenes.WinScreen);
+                break;
+            case Scenes.WinScreen:
+                GotoScene(TITLE_SCREEN, Scenes.TitleScreen);
+                break;
+        }
+    }
+
+    public void GotoScene(string path, Scenes newScene)
+    {
+        _currentSceneEnum = newScene;
         CallDeferred(nameof(DeferredGotoScene), path);
     }
 

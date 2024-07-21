@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/sprites/world_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/enemies/Slime.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/PixelOperator8-Bold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/fonts/PixelOperator8.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scripts/menus/TitleScreen.cs" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 2
@@ -15,6 +16,7 @@ size = 8
 font_data = ExtResource( 4 )
 
 [node name="TitleScreen" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="UI" type="Node" parent="."]
 
@@ -29,7 +31,7 @@ text = "SLIME INVASION"
 align = 1
 autowrap = true
 
-[node name="Button" type="Button" parent="UI"]
+[node name="StartButton" type="Button" parent="UI"]
 margin_left = 314.0
 margin_top = 197.0
 margin_right = 359.0

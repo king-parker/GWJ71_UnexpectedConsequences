@@ -19,10 +19,8 @@ public class LevelEndZone : Area2D
         {
             _hasTriggered = true;
             GD.Print("End of level");
-            // CollisionShape2D bodyCollision = body.GetNode<CollisionShape2D>("HurtBox");
-            // bodyCollision?.QueueFree();
 
-            _gameManager.GotoScene(GameManager.LEVEL_ONE);
+            _gameManager.GotoNextLevel();
         }
     }
 }
