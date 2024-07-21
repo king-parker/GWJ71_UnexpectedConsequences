@@ -16,6 +16,8 @@ public class GameManager : Node
         WinScreen
     }
 
+    public bool wasRageHidden { get; set; } = true;
+
     private int _rage = 0;
     private Timer _restartTimer;
     private Node _currentScene;
@@ -32,6 +34,8 @@ public class GameManager : Node
 
         _restartTimer = GetNode<Timer>("Timers/RestartTimer");
         _restartTimer.Connect("timeout", this, "OnRestartTimerTimeout");
+
+        wasRageHidden = true;
     }
 
     public void GotoNextLevel()

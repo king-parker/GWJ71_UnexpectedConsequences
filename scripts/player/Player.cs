@@ -50,6 +50,15 @@ public class Player : KinematicBody2D
 
     public override void _PhysicsProcess(float delta)
     {
+        if (!_isAlive)
+        {
+            _attackAnimation.Play("RESET");
+            _characterAnimation.Play("jump");
+            _velocity.y += _gravity / 4;
+            MoveAndSlide(_velocity, new Vector2(0, -1));
+            return;
+        }
+
         // Add the gravity.
         if (!IsOnFloor())
         {
@@ -137,15 +146,12 @@ public class Player : KinematicBody2D
         }
 
         // Choose attack animation
-        if (Input.IsActionJustPressed("attack") && _isAlive)
+        if (Input.IsActionJustPressed("attack"))
         {
             _attackAnimation.Play("attack");
         }
-        else if (!_isAlive)
-        {
-            _attackAnimation.Play("RESET");
-        }
 
+        // Call MoveAndSlide
         bool wasOnFloor = IsOnFloor();
         _velocity = MoveAndSlide(_velocity, new Vector2(0, -1));
 

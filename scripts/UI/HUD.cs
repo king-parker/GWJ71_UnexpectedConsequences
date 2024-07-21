@@ -7,18 +7,21 @@ public class HUD : CanvasLayer
 
     private GameManager _gameManager;
     private Label _rageLabel;
-    private bool _wasHidden = true;
+    private ColorRect _deathOverlay;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _wasHidden = true;
-
         _gameManager = GetNode<GameManager>("/root/GameManager");
-        _gameManager.Connect("RageUpdated", this, "UpdateRage");
+        _gameManager.Connect(nameof(GameManager.RageUpdated), this, "UpdateRage");
+        _gameManager.Connect(nameof(GameManager.PlayerDeathEvent), this, "ShowDeathOverlay");
 
         _rageLabel = GetNode<Label>("EnemyRage");
         UpdateRage(_gameManager.GetRage());
+
+        _deathOverlay = GetNode<ColorRect>("DeathOverlay");
+        _deathOverlay.Hide();
+        
     }
 
     public void UpdateRage(int rage)
@@ -28,16 +31,21 @@ public class HUD : CanvasLayer
         if (rage > 0)
         {
             _rageLabel.Show();
-            if (_wasHidden)
+            if (_gameManager.wasRageHidden)
             {
-                _wasHidden = false;
+                _gameManager.wasRageHidden = false;
                 GetNode<AnimationPlayer>("EnemyRage/AppearAnimation").Play("appear");
             }
         }
         else
         {
             _rageLabel.Hide();
-            _wasHidden = true;
+            _gameManager.wasRageHidden = true;
         }
+    }
+
+    private void ShowDeathOverlay()
+    {
+        _deathOverlay.Show();
     }
 }
