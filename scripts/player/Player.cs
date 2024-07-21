@@ -10,6 +10,7 @@ public class Player : KinematicBody2D
 
     private Vector2 _velocity = new Vector2();
     private bool _isJumping = false;
+    private bool _isAlive = true;
     private AnimatedSprite _characterAnimation;
     private AnimationPlayer _attackAnimation;
     private AnimatedSprite _attackPositioning;
@@ -17,10 +18,12 @@ public class Player : KinematicBody2D
     private Timer _coyoteTimer;
     private Timer _jumpBufferTimer;
     private Timer _shortHopTimer;
+    private GameManager _gameManager;
 
     public override void _Ready()
     {
         _isAttacking = false;
+        _isAlive = true;
 
         _characterAnimation = GetNode<AnimatedSprite>("CharacterAnimation");
         _characterAnimation.Play("idle");
@@ -40,6 +43,9 @@ public class Player : KinematicBody2D
 
         _shortHopTimer = GetNode<Timer>("Timers/ShortHopTimer");
         _shortHopTimer.Stop();
+
+        _gameManager = GetNode<GameManager>("/root/GameManager");
+        _gameManager.Connect("PlayerDeathEvent", this, "OnDeath");
     }
 
     public override void _PhysicsProcess(float delta)
@@ -131,9 +137,13 @@ public class Player : KinematicBody2D
         }
 
         // Choose attack animation
-        if (Input.IsActionJustPressed("attack"))
+        if (Input.IsActionJustPressed("attack") && _isAlive)
         {
             _attackAnimation.Play("attack");
+        }
+        else if (!_isAlive)
+        {
+            _attackAnimation.Play("RESET");
         }
 
         bool wasOnFloor = IsOnFloor();
@@ -151,6 +161,11 @@ public class Player : KinematicBody2D
         _jumpSound.Play();
         _isJumping = true;
         _shortHopTimer.Start();
+    }
+
+    private void OnDeath()
+    {
+        _isAlive = false;
     }
 
 }

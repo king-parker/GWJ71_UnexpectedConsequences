@@ -26,7 +26,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1152, 360 ) ]
+"values": [ Vector2( 1152, 352 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2.5, 5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1152, 360 ), Vector2( 1264, 360 ), Vector2( 1152, 360 ) ]
+"values": [ Vector2( 1152, 352 ), Vector2( 1264, 352 ), Vector2( 1152, 352 ) ]
 }
 
 [sub_resource type="LineShape2D" id=1]
@@ -200,13 +200,13 @@ tile_data = PoolIntArray( 852098, 1, 0, 917559, 1, 0, 917560, 1, 0, 917561, 1, 0
 [node name="Platforms" type="Node" parent="."]
 
 [node name="GrassyPlatform" parent="Platforms" instance=ExtResource( 7 )]
-position = Vector2( 984, 440 )
+position = Vector2( 984, 432 )
 
 [node name="GrassyPlatform2" parent="Platforms" instance=ExtResource( 7 )]
-position = Vector2( 984, 392 )
+position = Vector2( 984, 384 )
 
 [node name="GrassyPlatform3" parent="Platforms" instance=ExtResource( 7 )]
-position = Vector2( 1152, 360 )
+position = Vector2( 1152, 352 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/GrassyPlatform3"]
 autoplay = "move"

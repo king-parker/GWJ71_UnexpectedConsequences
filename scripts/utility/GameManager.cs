@@ -5,12 +5,13 @@ public class GameManager : Node
 {
     public static string TUTORIAL_LEVEL = "res://scenes/levels/LevelTutorial.tscn";
     public static string LEVEL_ONE = "res://scenes/levels/Level1.tscn";
-    
+
     private int _rage = 0;
     private Timer _restartTimer;
     private Node _currentScene;
 
     [Signal] public delegate void RageUpdated(int newRage);
+    [Signal] public delegate void PlayerDeathEvent();
 
     public override void _Ready()
     {
@@ -45,6 +46,7 @@ public class GameManager : Node
 
     public void PlayerDied()
     {
+        EmitSignal(nameof(PlayerDeathEvent));
         _restartTimer.Start();
         Engine.TimeScale = 0.5f;
     }

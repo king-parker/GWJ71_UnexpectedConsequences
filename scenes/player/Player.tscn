@@ -247,8 +247,8 @@ position = Vector2( 0, -5 )
 shape = SubResource( 6 )
 
 [node name="Attack" type="AnimatedSprite" parent="."]
-position = Vector2( 12, -9 )
-scale = Vector2( 1, 0.5 )
+position = Vector2( 9.5, -9 )
+scale = Vector2( 0.6875, 0.5 )
 frames = SubResource( 25 )
 animation = "slash"
 frame = 3

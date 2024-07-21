@@ -15,6 +15,7 @@ public class Slime : Node2D
     private const float _rayCastLength = 10;
     private const float _rayCastYOffset = -6;
     private GameManager _gameManager;
+    private AnimationPlayer _animationPlayer;
 
     public override void _Ready()
     {
@@ -33,6 +34,8 @@ public class Slime : Node2D
         _gameManager.Connect("RageUpdated", this, "ProcessRage");
 
         ProcessRage(_gameManager.GetRage());
+
+        _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
     public override void _Process(float delta)
@@ -49,7 +52,8 @@ public class Slime : Node2D
     public void Death()
     {
         _gameManager.IncrementRage();
-        QueueFree();
+        Speed = 0;
+        _animationPlayer.Play("Death");
     }
 
     private void SetDirection()
